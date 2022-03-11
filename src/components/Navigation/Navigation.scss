@@ -1,3 +1,6 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
 .fixedWrapper {
   top: 0;
   background-color: #2a2e35;
@@ -13,29 +16,15 @@
   padding-right: 18px;
 }
 
-.logoWrapper {
-  z-index: 1000;
-  svg {
-    margin-left: 1em;
-    height: 4em;
-    width: auto;
-  }
-}
-
-@media (max-width: 420px) {
-  .logoWrapper svg {
-    height: 4.5em;
-    width: 13em;
-  }
-}
-
 .navWrapper {
   display: flex;
   align-items: center;
+
   ul {
     list-style: none;
     display: flex;
     flex-flow: row nowrap;
+
     li {
       padding: 16px 10px;
       cursor: pointer;
@@ -54,7 +43,7 @@
   margin-right: 2em;
 }
 
-@media (max-width: 764px) {
+@include breaker(mobile) {
   .navWrapper ul {
     display: flex;
     align-items: center;
@@ -78,7 +67,7 @@ a {
   }
 }
 
-@media screen and (max-width: 764px) {
+@include breaker(mobile) {
   .navBar {
     position: fixed;
     display: flex;

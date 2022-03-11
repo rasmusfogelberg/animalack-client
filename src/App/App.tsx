@@ -1,12 +1,14 @@
 import React from "react";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
+
 import Navigation from "../components/Navigation/Navigation";
 import Footer from "../components/UI/Footer/Footer";
-import Home from "../Home/Home";
-import Login from "../Login/Login";
-import NotFound from "../NotFound/NotFound";
-import Profile from "../Profile/Profile";
-import Register from "../Register/Register";
+
+import Home from "../Pages/Home/Home";
+import Login from "../Pages/Login/Login";
+import NotFound from "../Pages/NotFound/NotFound";
+import Profile from "../Pages/Profile/Profile";
+import Register from "../Pages/Register/Register";
 
 function App() {
   return (
