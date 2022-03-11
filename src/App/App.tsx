@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
 import Navigation from "../components/Navigation/Navigation";
+import Footer from "../components/UI/Footer/Footer";
 import Home from "../Home/Home";
 import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
@@ -24,7 +25,10 @@ export function Layout() {
   return (
     <>
       <Navigation />
-      <Outlet />
+      <div className="wrapper">
+        <Outlet />
+      </div>
+      <Footer />
     </>
   );
 }
