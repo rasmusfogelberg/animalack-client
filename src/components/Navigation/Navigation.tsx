@@ -26,6 +26,9 @@ function Navigation() {
           <li>
             <NavLink to="/Profile">Profile</NavLink>
           </li>
+          <li>
+            <NavLink to="/Login">[Log in to the application so you can do stuff with it]</NavLink>
+          </li>
         </ul>
       </nav>
     </header>
