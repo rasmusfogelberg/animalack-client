@@ -8,6 +8,7 @@ import Footer from "../UI/Footer/Footer";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import NotFound from "../../Pages/NotFound/NotFound";
+import PetDetail from "../../Pages/PetDetail/PetDetail";
 import Profile from "../../Pages/Profile/Profile";
 import Register from "../../Pages/Register/Register";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -24,6 +25,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Profile />
+              </PrivateRoute>
+            }
+          />
+           <Route
+            path="petDetail"
+            element={
+              <PrivateRoute>
+                <PetDetail />
               </PrivateRoute>
             }
           />

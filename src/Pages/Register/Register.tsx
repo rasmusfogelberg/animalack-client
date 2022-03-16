@@ -3,7 +3,7 @@ import React from 'react';
 function Register() {
   return (
     <div className="Register">
-      <h2>Hi I'm profile</h2>
+      <h2>Hi I'm Register</h2>
     </div>
   );
 }
