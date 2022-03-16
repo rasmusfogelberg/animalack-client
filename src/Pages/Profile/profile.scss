@@ -1,0 +1,9 @@
+.petWrapper {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 600px));
+  justify-content: center;
+  max-height: 83vh;
+  height: max-content;
+  flex: 1;
+}
