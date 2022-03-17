@@ -29,7 +29,7 @@ function App() {
             }
           />
            <Route
-            path="petDetail"
+            path="petDetail/:petId"
             element={
               <PrivateRoute>
                 <PetDetail />

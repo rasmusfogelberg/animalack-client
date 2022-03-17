@@ -1,27 +1,28 @@
 import { apiHelper } from "../helpers/apiHelper";
-import { User } from "./user.service";
+import { IUser } from "./user.service";
 
-export interface SinglePet {
+export interface ISinglePet {
   id: string;
   name: string;
   breed: string;
   color: string;
   gender: string;
-  users: PetUser[];
+  born: Date;
+  users: IPetUser[];
 }
 
-export interface PetUser {
+export interface IPetUser {
   id: string;
   firstName: string;
   lastName: string;
   username: string;
 }
 
-export const userService = {
+export const petService = {
   getSinglePet,
 };
 
-function getSinglePet(petId: string): Promise<SinglePet> {
+function getSinglePet(petId: string): Promise<ISinglePet> {
   return apiHelper
     .get(`${process.env.REACT_APP_API_URL}/pets/${petId}`)
     .then((pet: any) => pet);

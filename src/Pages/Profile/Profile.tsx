@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
-import { Pet, User, userService } from "../../services/user.service";
+import { IPet, IUser, userService } from "../../services/user.service";
+import Pet from "../../components/Pet/Pet"
 
 function Profile() {
-  const [pets, setPets] = useState<Pet[]>();
+  const [pets, setPets] = useState<IPet[]>();
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -57,10 +58,18 @@ function Profile() {
                 <td>{breed}</td>
                 <td>{gender}</td>
                 <td>{color}</td>
+                <button onClick={() => navigate("/petDetail")}>View Pet</button>
               </tr>
             ))}
         </tbody>
       </table>
+      {pets &&
+            pets.length > 0 &&
+            pets.map((pet: IPet) => (
+              <Pet 
+                key={pet.id}
+                pet={pet} />
+            ))}
     </div>
   );
 }
