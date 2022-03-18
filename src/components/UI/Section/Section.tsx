@@ -24,8 +24,7 @@ function Section({ title, description, yPadding, children }: ISectionProps) {
           )}
         </div>
       )}
-
-      {children}
+      <div className="flex justify-center">{children}</div>
     </div>
   );
 }
