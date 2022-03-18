@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
 
 import Navigation from "../Navigation/Navigation";
@@ -8,11 +7,11 @@ import Footer from "../UI/Footer/Footer";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import NotFound from "../../Pages/NotFound/NotFound";
-import PetDetail from "../../Pages/PetDetail/PetDetail";
-import Profile from "../../Pages/Profile/Profile";
+import PetDetail from "../../Pages/Pets/PetDetail/PetDetail";
 import Register from "../../Pages/Register/Register";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { AuthProvider } from "../../providers/AuthProvider";
+import Pets from "../../Pages/Pets/Pets";
 
 function App() {
   return (
@@ -21,15 +20,15 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route
-            path="profile"
+            path="pets"
             element={
               <PrivateRoute>
-                <Profile />
+                <Pets />
               </PrivateRoute>
             }
           />
-           <Route
-            path="petDetail/:petId"
+          <Route
+            path="pets/:petId"
             element={
               <PrivateRoute>
                 <PetDetail />

@@ -1,22 +1,5 @@
 import { apiHelper } from "../helpers/apiHelper";
-import { IUser } from "./user.service";
-
-export interface ISinglePet {
-  id: string;
-  name: string;
-  breed: string;
-  color: string;
-  gender: string;
-  born: Date;
-  users: IPetUser[];
-}
-
-export interface IPetUser {
-  id: string;
-  firstName: string;
-  lastName: string;
-  username: string;
-}
+import { ISinglePet } from "../types/pets";
 
 export const petService = {
   getSinglePet,

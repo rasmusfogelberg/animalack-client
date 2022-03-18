@@ -1,6 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { IPet, IUser, userService } from "../../services/user.service";
+import { Link, useNavigate } from "react-router-dom";
+
+import { userService } from "../../services/user.service";
+import { IPet } from "../../types/pets";
 
 import "./pet.scss";
 
@@ -9,27 +11,20 @@ interface PetProps {
 }
 
 const Pet: React.FC<PetProps> = ({ pet }) => {
-  const { id: petId, name, species, breed, color, gender, born } = pet;
-
-  const navigate = useNavigate();
-
-  const handleSelectPet = () => {
-    if (!petId) return;
-    navigate(`/petDetail/${petId}`);
-  };
+  const { id: petId, name, species, breed, color, gender, born }: IPet = pet;
 
   return (
     <>
-      <div className="petItemContent" onClick={handleSelectPet}>
-      <ul>
-        <li>Name: {name}</li>
-        <li>Species: {species}</li>
-        <li>breed: {breed}</li>
-        <li>color: {color}</li>
-        <li>gender: {gender > 1 ? "Female" : "Male"}</li>
-        <li>Born: {born}</li>
-      </ul>
-      </div>
+      <Link className="petItemContent" to={`/pets/${petId}`}>
+        <>
+          <div>Name: {name}</div>
+          <div>Species: {species}</div>
+          <div>Breed: {breed}</div>
+          <div>Color: {color}</div>
+          <div>Gender: {gender > 1 ? "Female" : "Male"}</div>
+          <div>Born: {born}</div>
+        </>
+      </Link>
     </>
   );
 };

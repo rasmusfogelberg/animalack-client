@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
-import { IPet, IUser, userService } from "../../services/user.service";
-import Pet from "../../components/Pet/Pet"
+import { userService } from "../../services/user.service";
+import Pet from "../../components/Pet/Pet";
+import { IPet } from "../../types/pets";
 
-function Profile() {
+function Pets() {
   const [pets, setPets] = useState<IPet[]>();
   const auth = useAuth();
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Profile() {
   }, [pets]);
 
   return (
-    <div className="Profile">
+    <div className="Pets">
       <h2>
         Hi {auth.user.firstName} {auth.user.lastName}
       </h2>
@@ -37,41 +38,41 @@ function Profile() {
       </button>
 
       <h3>My pets</h3>
-      <table>
+{/*       <table>
         <thead>
           <tr>
             <th>Id</th>
+            <th>Species</th>
             <th>Name</th>
             <th>Breed</th>
             <th>Gender</th>
             <th>Color</th>
+            <th>Born</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {pets &&
             pets.length > 0 &&
-            pets.map(({ id, name, breed, gender, color }) => (
+            pets.map(({ id, species, name, breed, gender, color, born }: IPet) => (
               <tr>
                 <td>{id}</td>
                 <td>{name}</td>
                 <td>{breed}</td>
                 <td>{gender}</td>
                 <td>{color}</td>
-                <button onClick={() => navigate("/petDetail")}>View Pet</button>
+                <td>{species}</td>
+                <td>{born}</td>
+                <Link to={`/pets/${id}`}>View Pet</Link>
               </tr>
             ))}
         </tbody>
-      </table>
+      </table> */}
       {pets &&
-            pets.length > 0 &&
-            pets.map((pet: IPet) => (
-              <Pet 
-                key={pet.id}
-                pet={pet} />
-            ))}
+        pets.length > 0 &&
+        pets.map((pet: IPet) => <Pet key={pet.id} pet={pet} />)}
     </div>
   );
 }
 
-export default Profile;
+export default Pets;

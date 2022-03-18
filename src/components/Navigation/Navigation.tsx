@@ -24,10 +24,10 @@ function Navigation() {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/Profile">Profile</NavLink>
+            <NavLink to="/pets">Pets</NavLink>
           </li>
           <li>
-            <NavLink to="/Login">[Log in to the application so you can do stuff with it]</NavLink>
+            <NavLink to="/login">[Log in to the application so you can do stuff with it]</NavLink>
           </li>
         </ul>
       </nav>

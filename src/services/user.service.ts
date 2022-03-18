@@ -3,24 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import internal from "stream";
 import { apiHelper } from "../helpers/apiHelper";
-
-export interface IPet {
-  id: string;
-  name: string;
-  species: string;
-  breed: string;
-  color: string;
-  gender: number;
-  born: Date;
-}
-
-export interface IUser {
-  id: string;
-  firstName: string;
-  lastName: string;
-  username: string;
-  pets: IPet[];
-}
+import { IUser } from "../types/users";
 
 export const userService = {
   getUserPets,
