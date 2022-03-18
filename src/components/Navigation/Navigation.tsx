@@ -27,7 +27,7 @@ function Navigation() {
             <NavLink to="/pets">Pets</NavLink>
           </li>
           <li>
-            <NavLink to="/login">[Log in to the application so you can do stuff with it]</NavLink>
+            <NavLink to="/login">[Login]</NavLink>
           </li>
         </ul>
       </nav>

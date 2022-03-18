@@ -1,5 +1,5 @@
 import { Route, Routes as ReactRouterRoutes } from "react-router-dom";
-import { Layout } from "../components/App/App";
+import { BareLayout, Layout } from "../components/App/App";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -29,9 +29,11 @@ function Routes() {
             </PrivateRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+      <Route element={<BareLayout />}>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="*" element={<NotFound />} />
       </Route>
     </ReactRouterRoutes>
   );
