@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, Location, useNavigate } from "react-router-dom";
+import { useLocation, Location, useNavigate, NavLink } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 
 import { authService } from "../../services/auth.service";
@@ -11,35 +11,88 @@ type LoginFormData = {
 };
 
 function Login() {
-  const location: any = useLocation();
+  const { login } = useAuth();
   const navigate = useNavigate();
-  const auth = useAuth();
+  const { state }: any = useLocation();
 
   // TODO add errors from formState
-  const { register, handleSubmit, setValue } = useForm<LoginFormData>();
+  const { register, handleSubmit } = useForm<LoginFormData>();
 
-  let from: any = location.state?.from?.pathname || "/";
-
-  function onSubmit(data: any) {
-    auth
-      .login(data.username, data.password, () => {
-        // redirect user back to the path they came from, otherwise send them to "/"
-        navigate(from, { replace: true });
+  async function onSubmit(data: LoginFormData) {
+    try {
+      await login(data.username, data.password, () => {
+        navigate(state?.path || "/");
       });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
-    <div className="Login">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>Login</h3>
-        <label htmlFor="username">Username</label>
-        <input {...register("username", { required: true })} />
+    <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-1">
+      <blockquote className="text-2xl font-medium text-center">
+        <p className="text-lg font-semibold">
+          Animalack | <span className="text-indigo-500">Login</span>
+        </p>
+      </blockquote>
 
-        <label htmlFor="password">Password</label>
-        <input {...register("password", { required: true })} type="password" />
+      <div className="text-primary m-6">
+        <div className="flex items-center mt-3 justify-center">
+          <h1 className="text-2xl font-medium text-primary mt-4 mb-2">
+            Login to your account
+          </h1>
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label className="text-left">Username:</label>
+          <input
+            {...register("username", { required: true })}
+            className={
+              "w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
+            }
+          />
+          <label>Password:</label>
+          <input
+            {...register("password", { required: true })}
+            type="password"
+            className={
+              "w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
+            }
+          />
+          <div className="flex items-center mt-3 justify-center">
+            <button
+              className={
+                "bg-blue-700 hover:bg-blue-500 py-2 px-4 text-md text-white rounded border border-blue focus:outline-none focus:border-black"
+              }
+              value="Login"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+        <div className="flex items-center mt-3 justify-center">
+          <NavLink
+            to="/register"
+            className={
+              "justify-center text-center hover:text-blue-900 text-blue-500 hover:underline"
+            }
+          >
+            {`Need an account?`}
+            <br />
+            {`Click here to register for free`}
+          </NavLink>
+        </div>
 
-        <button type="submit">Log in</button>
-      </form>
+        <div className="flex items-center mt-8 justify-center">
+          <NavLink
+            to="/"
+            className={
+              "justify-center text-center hover:text-gray-700 text-gray-400 hover:underline"
+            }
+          >
+            {`Click here to go back to the landing page.`}
+          </NavLink>
+        </div>
+      </div>
     </div>
   );
 }
