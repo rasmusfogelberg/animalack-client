@@ -1,6 +1,6 @@
 interface IApiHelper {
-  get(url: string): Promise<Response>;
-  post(url: string, body: Object): Promise<Response>;
+  get(url: string): Promise<any>;
+  post(url: string, body: Object): Promise<any>;
 };
 
 export const apiHelper: IApiHelper = {

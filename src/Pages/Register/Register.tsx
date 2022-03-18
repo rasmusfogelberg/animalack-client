@@ -1,11 +1,19 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
+import { userService } from "../../services/user.service";
 
 function Register() {
   const { register, handleSubmit } = useForm();
 
-  async function onSubmit(data: any) {}
+  async function onSubmit(data: any) {
+    try {
+      await userService.registerUser(data);
+      debugger;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-1">

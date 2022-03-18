@@ -4,28 +4,6 @@
 
 @import "../styles/variables";
 
-#root {
-  height: 100%;
-}
-
-/** TODO: PLEASE FORGIVE ME **/
-.wrapper {
-  margin-top: 8em;
-  min-height: calc(100vh - 6em);
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-
-  padding: 16px;
-}
-
-.headerWrapper {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0px;
-  z-index: 100;
-}
-
 .btn,
 .btn-sm {
   @apply font-medium inline-flex items-center justify-center border border-transparent rounded leading-snug transition duration-150 ease-in-out;

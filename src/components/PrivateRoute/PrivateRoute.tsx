@@ -3,9 +3,10 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 
 function PrivateRoute({children}: { children: JSX.Element }) {
-    const auth = useAuth();
+    const { user, loading } = useAuth();
     const location = useLocation();
-    if (!auth || !auth.user) {
+
+    if (!user && !loading) {
         return <Navigate to="/login" state={{ from: location }} replace />
     }
 

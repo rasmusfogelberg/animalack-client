@@ -1,10 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom";
-
-import Navigation from "../Navigation/Navigation";
-import Footer from "../UI/Footer/Footer";
-
 import { AuthProvider, useAuth } from "../../providers/AuthProvider";
 import Routes from "../../routes";
+import Navigation from "../Navigation/Navigation";
+import Footer from "../UI/Footer/Footer";
 import Header from "../UI/Header/Header";
 
 function App() {
@@ -33,8 +31,8 @@ export function Layout() {
 }
 
 export function BareLayout() {
-  const location = useLocation();
-  const isLogin = location.pathname.includes("login");
+  const { pathname }: any = useLocation();
+  const isLogin = pathname.includes("login");
   const gradientClass = isLogin
     ? `from-cyan-500 to-blue-500`
     : `from-pink-500 to-purple-500`;

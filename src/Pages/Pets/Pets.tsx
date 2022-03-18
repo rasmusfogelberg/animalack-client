@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Pet from "../../components/Pet/Pet";
 import { useAuth } from "../../providers/AuthProvider";
 import { userService } from "../../services/user.service";
-import Pet from "../../components/Pet/Pet";
 import { IPet } from "../../types/pets";
 
 function Pets() {
   const [pets, setPets] = useState<IPet[]>();
-  const { user } = useAuth();
-  const navigate = useNavigate();
+  const { user, loading } = useAuth();
 
   useEffect(() => {
-    if (!pets) {
+    if (!pets && user && !loading) {
       userService.getUserPets(user.id).then((user) => {
         setPets(user?.pets);
       });
     }
-  }, [pets]);
+  }, [pets, user, loading]);
 
   return (
     <section className="relative">
