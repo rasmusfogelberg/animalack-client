@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { userService } from "../../services/user.service";
 import { IPet } from "../../types/pets";
 
-import "./pet.scss";
-
 interface PetProps {
   pet: IPet;
 }
@@ -15,16 +13,23 @@ const Pet: React.FC<PetProps> = ({ pet }) => {
 
   return (
     <>
-      <Link className="petItemContent" to={`/pets/${petId}`}>
-        <>
-          <div>Name: {name}</div>
-          <div>Species: {species}</div>
-          <div>Breed: {breed}</div>
-          <div>Color: {color}</div>
-          <div>Gender: {gender > 1 ? "Female" : "Male"}</div>
-          <div>Born: {born}</div>
-        </>
-      </Link>
+      {!pet && <p>Loading...</p>}
+      {pet && (
+        <Link to={`/pets/${petId}`}>
+          <figure className="relative max-w-xs ">
+            <img
+              alt={`Showing photo of pet named ${name} that is a ${species}`} 
+              className="rounded-lg shadow-xl hover:shadow-2xl "
+              src="https://images.unsplash.com/photo-1534351450181-ea9f78427fe8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=320&q=80"
+            />
+            <figcaption className="absolute text-lg -mt-16 text-pink-400 font-bold px-8 ">
+              <>
+                <h4>{name}</h4>
+              </>
+            </figcaption>
+          </figure>
+        </Link>
+      )}
     </>
   );
 };
