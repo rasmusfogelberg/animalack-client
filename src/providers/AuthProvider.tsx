@@ -40,14 +40,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     async function loadUserFromSessionStorage() {
       const storedUser = sessionStorage.getItem("@animalack:user");
 
-      if (storedUser && !user) {
+      if (storedUser) {
         setLoading(false);
         setUser(JSON.parse(storedUser));
+      } else {
+        setUser(null);
       }
+      setLoading(false);
     }
 
     loadUserFromSessionStorage();
-  });
+  }, []);
 
   const login = (
     username: string,
@@ -60,6 +63,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         let { jwtToken, ...user } = response;
 
         setUser(user);
+        setLoading(false);
 
         // Store the user and token in sessionStorage
         sessionStorage.setItem("@animalack:user", JSON.stringify(user));
@@ -74,6 +78,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = (callback: VoidFunction) => {
     setUser(null);
+    setLoading(false);
     sessionStorage.clear();
     callback();
   };

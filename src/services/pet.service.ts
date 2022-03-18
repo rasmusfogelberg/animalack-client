@@ -3,10 +3,34 @@ import { ISinglePet } from "../types/pets";
 
 export const petService = {
   getSinglePet,
+  addPet,
+  updatePet,
+  deletePet,
 };
 
 function getSinglePet(petId: string): Promise<ISinglePet> {
   return apiHelper
     .get(`${process.env.REACT_APP_API_URL}/pets/${petId}`)
     .then((pet: any) => pet);
+}
+
+function addPet(newPet: ISinglePet): Promise<any> {
+  return apiHelper
+    .post(`${process.env.REACT_APP_API_URL}/pets/register`, newPet)
+    .then((response: any) => response)
+    .catch((error) => error);
+}
+
+function updatePet(updatedPet: ISinglePet): Promise<any> {
+  return apiHelper
+    .put(`${process.env.REACT_APP_API_URL}/pets/${updatedPet.id}`, updatedPet)
+    .then((response: any) => response)
+    .catch((error) => error);
+}
+
+function deletePet(petId: string): Promise<any> {
+  return apiHelper
+    .delete(`${process.env.REACT_APP_API_URL}/pets/${petId}`)
+    .then((response: any) => response)
+    .catch((error) => error);
 }

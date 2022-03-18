@@ -5,15 +5,16 @@ export interface IPet {
   breed: string;
   color: string;
   gender: number;
-  born: Date;
+  dateOfBirth: Date;
 }
 
 export interface ISinglePet {
   id: string;
   name: string;
+  species: string;
   breed: string;
   color: string;
   gender: string;
-  born: Date;
+  dateOfBirth: Date;
   users: IPetUser[];
 }

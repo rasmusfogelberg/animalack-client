@@ -4,8 +4,10 @@ import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import NotFound from "../Pages/NotFound/NotFound";
+import AddPet from "../Pages/Pets/AddPet";
 import PetDetail from "../Pages/Pets/PetDetail/PetDetail";
 import Pets from "../Pages/Pets/Pets";
+import UpdatePet from "../Pages/Pets/UpdatePet";
 import Register from "../Pages/Register/Register";
 
 function Routes() {
@@ -26,6 +28,22 @@ function Routes() {
           element={
             <PrivateRoute>
               <PetDetail />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/pets/add"
+          element={
+            <PrivateRoute>
+              <AddPet />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/pets/:petId/update"
+          element={
+            <PrivateRoute>
+              <UpdatePet />
             </PrivateRoute>
           }
         />
