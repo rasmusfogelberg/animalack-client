@@ -9,7 +9,6 @@ function Register() {
   async function onSubmit(data: any) {
     try {
       await userService.registerUser(data);
-      debugger;
     } catch (error) {
       console.error(error);
     }

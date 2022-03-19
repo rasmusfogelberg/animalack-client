@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../../providers/AuthProvider";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { petService } from "../../../services/pet.service";
 import { ISinglePet } from "../../../types/pets";
+import { toast} from "react-hot-toast";
 
 function PetDetail() {
   const [pet, setPet] = useState<ISinglePet>();
-  const auth = useAuth();
-  const navigate = useNavigate();
   const { petId } = useParams();
-
+  const born = new Date(pet?.dateOfBirth as Date).toLocaleDateString();
+  const navigate = useNavigate();
   useEffect(() => {
     if (!pet && petId) {
       petService.getSinglePet(petId).then((pet) => {
@@ -17,11 +16,12 @@ function PetDetail() {
       });
     }
   }, [pet]);
-
+  
   async function onDelete() {
     try {
-      petId && await petService.deletePet(petId);
-      debugger;
+      petId && (await petService.deletePet(petId));
+      toast.success("Pet successfully deleted!")
+      navigate("/pets")
     } catch (error) {
       console.error(error);
     }
@@ -38,7 +38,7 @@ function PetDetail() {
           <li>Breed: {pet?.breed}</li>
           <li>Color: {pet?.color}</li>
           <li>Gender: {pet?.gender}</li>
-          <li>Born: {pet?.dateOfBirth}</li>
+          <li>Born: {born}</li>
           <li>Owner: {pet?.users[0].firstName}</li>
         </ul>
         <div className="relative">

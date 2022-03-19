@@ -4,6 +4,7 @@ import Pet from "../../components/Pet/Pet";
 import { useAuth } from "../../providers/AuthProvider";
 import { userService } from "../../services/user.service";
 import { IPet } from "../../types/pets";
+import toast, { Toaster } from "react-hot-toast";
 
 function Pets() {
   const [pets, setPets] = useState<IPet[]>();
@@ -16,11 +17,14 @@ function Pets() {
       });
     }
   }, [pets, user]);
-
+  
   return (
     <>
       <section className="relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div>
+            <Toaster position="top-center" reverseOrder={false} />
+          </div>
           <h1 className="text-xl font-bold leading-snub tracking tight mb-4 mt-10">
             My Pets
           </h1>
@@ -37,7 +41,7 @@ function Pets() {
                 </>
               )}
               <Link className="btn bg-indigo-500 text-white" to="/pets/add">
-                Add a freaking pet
+                Add pet
               </Link>
             </div>
           </div>

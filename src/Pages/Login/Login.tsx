@@ -1,9 +1,7 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, Location, useNavigate, NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
-
-import { authService } from "../../services/auth.service";
 
 type LoginFormData = {
   username: string;
@@ -16,15 +14,19 @@ function Login() {
   const { state }: any = useLocation();
 
   // TODO add errors from formState
-  const { register, handleSubmit } = useForm<LoginFormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>();
 
   async function onSubmit(data: LoginFormData) {
     try {
       await login(data.username, data.password, () => {
         navigate(state?.path || "/");
       });
-    } catch (error) {
-      console.error(error);
+    } catch (err: unknown) {
+      console.error(err);
     }
   }
 
@@ -43,20 +45,38 @@ function Login() {
           </h1>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label className="text-left">Username:</label>
+          <label className="text-left">Username: </label>
+          {errors.username && (
+            <span
+              className="border-red-400 text-red-700 font-bold text-right"
+              role="alert"
+            >
+              {errors.username.message}
+            </span>
+          )}
           <input
-            {...register("username", { required: true })}
-            className={
-              "w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
-            }
+            {...register("username", { required: "Username is required" })}
+            className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 ${
+              errors.username &&
+              "focus:border-red-400 focus:ring-red-400 border-red-400"
+            }`}
           />
-          <label>Password:</label>
+          <label>Password: </label>
+          {errors.password && (
+            <span
+              className="border-red-400 text-red-700 font-bold text-right"
+              role="alert"
+            >
+              {errors.password.message}
+            </span>
+          )}
           <input
-            {...register("password", { required: true })}
+            {...register("password", { required: "Password is required" })}
             type="password"
-            className={
-              "w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
-            }
+            className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 ${
+              errors.password &&
+              "focus:border-red-400 focus:ring-red-400 border-red-400"
+            }`}
           />
           <div className="flex items-center mt-3 justify-center">
             <button

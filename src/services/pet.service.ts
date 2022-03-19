@@ -1,6 +1,7 @@
 import { apiHelper } from "../helpers/apiHelper";
 import { ISinglePet } from "../types/pets";
 
+
 export const petService = {
   getSinglePet,
   addPet,
@@ -11,7 +12,8 @@ export const petService = {
 function getSinglePet(petId: string): Promise<ISinglePet> {
   return apiHelper
     .get(`${process.env.REACT_APP_API_URL}/pets/${petId}`)
-    .then((pet: any) => pet);
+    .then((pet: any) => pet)
+    .catch((error) => error);
 }
 
 function addPet(newPet: ISinglePet): Promise<any> {
