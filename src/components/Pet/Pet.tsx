@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { animalImage } from "../../helpers/animalImage";
 
 import { userService } from "../../services/user.service";
 import { IPet } from "../../types/pets";
@@ -9,7 +10,15 @@ interface PetProps {
 }
 
 const Pet: React.FC<PetProps> = ({ pet }) => {
-  const { id: petId, name, species, breed, color, gender, dateOfBirth }: IPet = pet;
+  const {
+    id: petId,
+    name,
+    species,
+    breed,
+    color,
+    gender,
+    dateOfBirth,
+  }: IPet = pet;
 
   return (
     <>
@@ -18,8 +27,8 @@ const Pet: React.FC<PetProps> = ({ pet }) => {
           <figure className="relative max-w-xs ">
             <img
               alt={`Showing photo of pet named ${name} that is a ${species}`}
-              className="rounded-lg shadow-xl hover:shadow-2xl "
-              src="https://images.unsplash.com/photo-1534351450181-ea9f78427fe8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=320&q=80"
+              className="rounded-lg shadow-xl hover:shadow-2xl max-w-xs max-h-80"
+              src={animalImage(species)}
             />
             <figcaption className="absolute text-lg -mt-16 text-pink-400 font-bold px-8 ">
               <>
@@ -34,3 +43,4 @@ const Pet: React.FC<PetProps> = ({ pet }) => {
 };
 
 export default Pet;
+/*  */

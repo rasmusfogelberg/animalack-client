@@ -17,7 +17,7 @@ function Pets() {
       });
     }
   }, [pets, user]);
-  
+
   return (
     <>
       <section className="relative">
@@ -28,21 +28,22 @@ function Pets() {
           <h1 className="text-xl font-bold leading-snub tracking tight mb-4 mt-10">
             My Pets
           </h1>
-
+          <div>
+            {" "}
+            {pets?.length === 0 && (
+              <>
+                <p>No pets? Why not add one?</p>
+              </>
+            )}
+            <Link className="btn bg-indigo-500 text-white mb-10 mt-1" to="/pets/add">
+              Add pet
+            </Link>
+          </div>
           <div className="relative">
             <div className="max-w-sm mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start md:max-w-2xl lg:max-w-none text-black">
               {pets &&
                 pets.length > 0 &&
                 pets.map((pet: IPet) => <Pet key={pet.id} pet={pet} />)}
-
-              {pets?.length === 0 && (
-                <>
-                  <p>No pets? Why not add one?</p>
-                </>
-              )}
-              <Link className="btn bg-indigo-500 text-white" to="/pets/add">
-                Add pet
-              </Link>
             </div>
           </div>
         </div>

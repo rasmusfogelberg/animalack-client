@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { petService } from "../../../services/pet.service";
 import { ISinglePet } from "../../../types/pets";
 import { toast} from "react-hot-toast";
+import { animalImage } from "../../../helpers/animalImage";
 
 function PetDetail() {
   const [pet, setPet] = useState<ISinglePet>();
@@ -33,23 +34,30 @@ function PetDetail() {
         <h1 className="text-xl font-bold leading-snub tracking tight mb-4 mt-10">
           {pet?.name}
         </h1>
-        <ul>
-          <li>Species: {pet?.species}</li>
-          <li>Breed: {pet?.breed}</li>
-          <li>Color: {pet?.color}</li>
-          <li>Gender: {pet?.gender}</li>
-          <li>Born: {born}</li>
-          <li>Owner: {pet?.users[0].firstName}</li>
+        <div className="flex flex-wrap justify-between">
+        <ul className="text-lg">
+          <li className="my-1 font-bold ">Species: <span className="font-medium">{pet?.species}</span></li>
+          <li className="my-1 font-bold">Breed: <span className="font-medium">{pet?.breed}</span></li>
+          <li className="my-1 font-bold">Color: <span className="font-medium">{pet?.color}</span></li>
+          <li className="my-1 font-bold">Gender: <span className="font-medium">{pet?.gender}</span></li>
+          <li className="my-1 font-bold">Born: <span className="font-medium">{born}</span></li>
+          <li className="my-1 font-bold">Owner: <span className="font-medium">{pet?.users[0].firstName}</span></li>
         </ul>
-        <div className="relative">
-          <div>
+        <img
+              alt={`Showing photo of pet named ${pet?.name} that is a ${pet?.species}`}
+              className="rounded-lg shadow-xl max-w-xs max-h-80"
+              src={animalImage(pet?.species as string)}
+            />
+            </div>
+        <div className="relative flex flex-wrap items-center justify-between h-16 md:h-20">
+          <div className="btn bg-indigo-500 text-white m-3 ml-0">
             <Link to={`/pets/${petId}/update`}>Update {pet?.name}</Link>
           </div>
-          <div>
+          <div className="btn bg-teal-500 m-3 ml-0">
             <Link to="/pets">Back to Pets</Link>
           </div>
           <div>
-            <button className="btn bg-red-500 text-white" onClick={onDelete}>
+            <button className="btn bg-red-500 text-white m-3 ml-0" onClick={onDelete}>
               Delete!
             </button>
           </div>
