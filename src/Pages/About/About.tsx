@@ -1,8 +1,7 @@
 import React from "react";
-import Hero from "../../components/UI/Hero/Hero";
 import Section from "../../components/UI/Section/Section";
-
 import Avatar from "./avatar.jpg";
+
 
 function About() {
   const classes = `mt-20 flex flex-wrap items-center`;
@@ -28,7 +27,7 @@ function About() {
           </div>
 
           <div className="w-full sm:w-1/2 p-6">
-            <img src={Avatar} alt="Image of the founder of Animlack" />
+            <img src={Avatar} alt="Founder of Animlack" />
           </div>
           <div>
             The idea for Animalack started when I noticed my cat wouldn't always

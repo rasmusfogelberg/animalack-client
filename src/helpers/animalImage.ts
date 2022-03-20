@@ -1,3 +1,9 @@
+/* 
+ * Helper to get the images that will be shown as avatar for different species of animals
+ *
+ * 
+ *  */
+
 export function animalImage(species: string): string {
   let catImage =
     "https://images.unsplash.com/photo-1570117268106-8e369647c733?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=320&q=80";

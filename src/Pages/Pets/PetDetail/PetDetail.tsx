@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { animalImage } from "../../../helpers/animalImage";
 import { petService } from "../../../services/pet.service";
 import { ISinglePet } from "../../../types/pets";
-import { toast} from "react-hot-toast";
-import { animalImage } from "../../../helpers/animalImage";
 
 function PetDetail() {
   const [pet, setPet] = useState<ISinglePet>();
@@ -17,7 +17,7 @@ function PetDetail() {
         setPet(pet);
       });
     }
-  }, [pet]);
+  }, [pet, petId]);
   
   async function onDelete() {
     try {
@@ -45,7 +45,7 @@ function PetDetail() {
           <li className="my-1 font-bold">Owner: <span className="font-medium">{pet?.users[0].firstName}</span></li>
         </ul>
         <img
-              alt={`Showing photo of pet named ${pet?.name} that is a ${pet?.species}`}
+              alt={`A pet named ${pet?.name} that is a ${pet?.species}`}
               className="rounded-lg shadow-xl max-w-xs max-h-80"
               src={animalImage(pet?.species as string)}
             />

@@ -1,9 +1,11 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
-import internal from "stream";
 import { apiHelper } from "../helpers/apiHelper";
 import { IUser } from "../types/users";
+
+/* 
+ * Get and Register User to the backend
+ *
+ * 
+ *  */
 
 export const userService = {
   getUserPets,

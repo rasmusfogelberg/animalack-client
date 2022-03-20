@@ -1,6 +1,11 @@
 import { apiHelper } from "../helpers/apiHelper";
 import { ISinglePet } from "../types/pets";
 
+/* 
+ * CRUD for the Pet entity
+ *
+ * 
+ *  */
 
 export const petService = {
   getAllPets,
