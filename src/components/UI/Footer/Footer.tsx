@@ -2,76 +2,37 @@ import { Link } from "react-router-dom";
 
 const footerLinks = [
   {
-    name: "Category 1",
+    name: "Our sponsors",
     links: [
       {
-        title: "Category 1 Link 1",
+        title: "Animal Lovers",
         url: "#",
       },
       {
-        title: "Category 1 Link 2",
-        url: "#",
-      },
-      {
-        title: "Category 1 Link 3",
-        url: "#",
-      },
-      {
-        title: "Category 1 Link 4",
-        url: "#",
-      },
-      {
-        title: "Category 1 Link 5",
+        title: "Dog Walkers AB",
         url: "#",
       },
     ],
   },
+
+   
   {
-    name: "Category 2",
+    name: "For animal lovers",
     links: [
       {
-        title: "Category 2 Link 1",
+        title: "Dogman",
         url: "#",
       },
       {
-        title: "Category 2 Link 2",
+        title: "Royal Canin",
         url: "#",
       },
       {
-        title: "Category 2 Link 3",
+        title: "Arken Zoo",
         url: "#",
       },
       {
-        title: "Category 2 Link 4",
-        url: "#",
-      },
-      {
-        title: "Category 2 Link 5",
-        url: "#",
-      },
-    ],
-  },
-  {
-    name: "Category 3",
-    links: [
-      {
-        title: "Category 3 Link 1",
-        url: "#",
-      },
-      {
-        title: "Category 3 Link 2",
-        url: "#",
-      },
-      {
-        title: "Category 3 Link 3",
-        url: "#",
-      },
-      {
-        title: "Category 3 Link 4",
-        url: "#",
-      },
-      {
-        title: "Category 3 Link 5",
+        title: "Scan",
         url: "#",
       },
     ],
@@ -83,23 +44,7 @@ function Footer() {
     <footer>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid sm:grid-cols-12 gap-8 py-8 md:py-12 border-t border-gray-200">
-          <div className="sm:col-span-12 lg:col-span-3">
-            <div className="text-sm text-gray-600">
-              <Link
-                to="#"
-                className="text-gray-600 hover:text-gray-900 hover:underline transition duration-150 ease-in-out"
-              >
-                Link
-              </Link>{" "}
-              ·{" "}
-              <Link
-                to="#"
-                className="text-gray-600 hover:text-gray-900 hover:underline transition duration-150 ease-in-out"
-              >
-                And another
-              </Link>
-            </div>
-          </div>
+
 
           {footerLinks &&
             footerLinks.map((category: any) => (
@@ -123,9 +68,9 @@ function Footer() {
             ))}
 
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-3">
-            <h6 className="text-gray-800 font-medium mb-2">Last block</h6>
+            <h6 className="text-gray-800 font-medium mb-2">Stay updated</h6>
             <p className="text-sm text-gray-600 mb-4">
-              Here we ask people to signup to a newsletter
+              Signup to our newsletter
             </p>
             <form>
               <div className="flex flex-wrap mb-4">

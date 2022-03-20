@@ -4,11 +4,13 @@ import Routes from "../../routes";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../UI/Footer/Footer";
 import Header from "../UI/Header/Header";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <AuthProvider>
       <Routes />
+      <Toaster position="top-center" reverseOrder={false} />
     </AuthProvider>
   );
 }
