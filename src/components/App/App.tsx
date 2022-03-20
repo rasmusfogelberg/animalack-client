@@ -1,58 +1,54 @@
-import React from "react";
-import { Outlet, Route, Routes } from "react-router-dom";
-
+import { Outlet, useLocation } from "react-router-dom";
+import { AuthProvider, useAuth } from "../../providers/AuthProvider";
+import Routes from "../../routes";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../UI/Footer/Footer";
-
-// TODO: see if aliasing works now in typescript without breaking everything...
-import Home from "../../Pages/Home/Home";
-import Login from "../../Pages/Login/Login";
-import NotFound from "../../Pages/NotFound/NotFound";
-import PetDetail from "../../Pages/PetDetail/PetDetail";
-import Profile from "../../Pages/Profile/Profile";
-import Register from "../../Pages/Register/Register";
-import PrivateRoute from "../PrivateRoute/PrivateRoute";
-import { AuthProvider } from "../../providers/AuthProvider";
+import Header from "../UI/Header/Header";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <AuthProvider>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="profile"
-            element={
-              <PrivateRoute>
-                <Profile />
-              </PrivateRoute>
-            }
-          />
-           <Route
-            path="petDetail/:petId"
-            element={
-              <PrivateRoute>
-                <PetDetail />
-              </PrivateRoute>
-            }
-          />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+      <Routes />
+      <Toaster position="top-center" reverseOrder={false} />
     </AuthProvider>
   );
 }
 
 export function Layout() {
+  const { user } = useAuth();
+
   return (
     <>
-      <Navigation />
-      <div className="wrapper">
-        <Outlet />
+      {!user && <Header />}
+      {user && <Navigation />}
+      <div className="flex flex-col min-h-screen overflow-hidden">
+        <main className="flex-grow">
+          <Outlet />
+        </main>
       </div>
       <Footer />
+    </>
+  );
+}
+
+export function BareLayout() {
+  const { pathname }: any = useLocation();
+  const isLogin = pathname.includes("login");
+  const gradientClass = isLogin
+    ? `from-cyan-500 to-blue-500`
+    : `from-pink-500 to-purple-500`;
+
+  return (
+    <>
+      {<Header />}
+      <div
+        className={`flex flex-col min-h-screen overflow-hidden bg-gradient-to-r ${gradientClass}`}
+      >
+        <main className="flex flex-grow">
+          <Outlet />
+        </main>
+      </div>
     </>
   );
 }

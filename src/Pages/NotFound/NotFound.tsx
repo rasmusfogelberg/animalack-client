@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
+import Section from "../../components/UI/Section/Section";
 
 function NotFound() {
   return (
-    <>
-      <h1>This is not the page you are looking for!</h1>
-      <Link to="/">Go back, silly person</Link>
-    </>
+    <Section
+      title="This is not the page you are looking for!"
+      description="Don't know how you ended up here really..."
+    >
+      <Link className="btn bg-indigo-500 text-white flex justify-center self-center" to="/">Go back, silly person</Link>
+    </Section>
   );
 }
 
-export default NotFound
+export default NotFound;

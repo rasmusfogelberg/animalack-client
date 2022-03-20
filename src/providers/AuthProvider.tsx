@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { authService } from "../services/auth.service";
 
 /**
@@ -19,6 +19,7 @@ import { authService } from "../services/auth.service";
 
 interface IAuthContext {
   user: any; // TODO no...
+  loading: boolean;
   login: (username: string, password: string, callback: VoidFunction) => void;
   logout: (callback: VoidFunction) => void;
 }
@@ -33,26 +34,59 @@ export function useAuth() {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   // TODO: type the user object here
   const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const login = (username: string, password: string, callback: VoidFunction) => {
+  useEffect(() => {
+    async function loadUserFromSessionStorage() {
+      const storedUser = sessionStorage.getItem("@animalack:user");
+
+      if (storedUser) {
+        setLoading(false);
+        setUser(JSON.parse(storedUser));
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    }
+
+    loadUserFromSessionStorage();
+  }, []);
+
+  const login = (
+    username: string,
+    password: string,
+    callback: VoidFunction
+  ) => {
     return authService
       .login(username, password)
-      .then((user) => {
+      .then((response) => {
+        let { jwtToken, ...user } = response;
+
         setUser(user);
+        setLoading(false);
+
+        // Store the user and token in sessionStorage
+        sessionStorage.setItem("@animalack:user", JSON.stringify(user));
+        sessionStorage.setItem("@animalack:token", JSON.stringify(jwtToken));
+
         callback();
       })
       .catch((error) => {
-        // TODO: handle this properly
         console.error(error);
+        throw new Error(error);
       });
   };
 
   const logout = (callback: VoidFunction) => {
     setUser(null);
+    setLoading(false);
+    sessionStorage.clear();
     callback();
-  }
+  };
 
-  let value = { user, login, logout };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, loading, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }

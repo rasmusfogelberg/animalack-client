@@ -1,37 +1,46 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { IPet, IUser, userService } from "../../services/user.service";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { animalImage } from "../../helpers/animalImage";
 
-import "./pet.scss";
+import { userService } from "../../services/user.service";
+import { IPet } from "../../types/pets";
 
 interface PetProps {
   pet: IPet;
 }
 
 const Pet: React.FC<PetProps> = ({ pet }) => {
-  const { id: petId, name, species, breed, color, gender, born } = pet;
-
-  const navigate = useNavigate();
-
-  const handleSelectPet = () => {
-    if (!petId) return;
-    navigate(`/petDetail/${petId}`);
-  };
+  const {
+    id: petId,
+    name,
+    species,
+    breed,
+    color,
+    gender,
+    dateOfBirth,
+  }: IPet = pet;
 
   return (
     <>
-      <div className="petItemContent" onClick={handleSelectPet}>
-      <ul>
-        <li>Name: {name}</li>
-        <li>Species: {species}</li>
-        <li>breed: {breed}</li>
-        <li>color: {color}</li>
-        <li>gender: {gender > 1 ? "Female" : "Male"}</li>
-        <li>Born: {born}</li>
-      </ul>
-      </div>
+      {pet && (
+        <Link to={`/pets/${petId}`}>
+          <figure className="relative max-w-xs ">
+            <img
+              alt={`Showing photo of pet named ${name} that is a ${species}`}
+              className="rounded-lg shadow-xl hover:shadow-2xl max-w-xs max-h-80"
+              src={animalImage(species)}
+            />
+            <figcaption className="absolute text-lg -mt-16 text-pink-400 font-bold px-8 ">
+              <>
+                <h4>{name}</h4>
+              </>
+            </figcaption>
+          </figure>
+        </Link>
+      )}
     </>
   );
 };
 
 export default Pet;
+/*  */
