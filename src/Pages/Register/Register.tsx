@@ -98,7 +98,7 @@ function Register() {
               required: "Required",
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: "Entered value does not match email format"
+                message: "Does not match email format"
               }})}
             type="email"
             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 ${

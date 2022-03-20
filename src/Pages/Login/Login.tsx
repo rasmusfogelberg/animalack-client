@@ -21,11 +21,12 @@ function Login() {
 
   async function onSubmit(data: LoginFormData) {
     try {
+      debugger;
       await login(data.username, data.password, () => {
         navigate(state?.path || "/");
       });
-    } catch (err: unknown) {
-      console.error(err);
+    } catch (error: any) {
+      console.log(error.response.data);
     }
   }
 
@@ -54,7 +55,13 @@ function Login() {
             </span>
           )}
           <input
-            {...register("username", { required: "Username is required" })}
+            {...register("username", {
+              required: "Required",
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Does not match email format"
+              }})}
+              type="email"
             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 ${
               errors.username &&
               "focus:border-red-400 focus:ring-red-400 border-red-400"
