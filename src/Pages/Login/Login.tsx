@@ -13,7 +13,6 @@ function Login() {
   const navigate = useNavigate();
   const { state }: any = useLocation();
 
-  // TODO add errors from formState
   const {
     register,
     handleSubmit,
