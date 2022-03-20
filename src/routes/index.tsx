@@ -9,7 +9,8 @@ import PetDetail from "../Pages/Pets/PetDetail/PetDetail";
 import Pets from "../Pages/Pets/Pets";
 import UpdatePet from "../Pages/Pets/UpdatePet";
 import Register from "../Pages/Register/Register";
-import About from "../Pages/About/About"
+import About from "../Pages/About/About";
+import AllPets from "../Pages/AllPets/AllPets";
 
 function Routes() {
   return (
@@ -48,7 +49,8 @@ function Routes() {
             </PrivateRoute>
           }
         />
-         <Route path="/about" element={<About />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/allPets" element={<AllPets />} />
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route element={<BareLayout />}>

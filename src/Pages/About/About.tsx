@@ -8,7 +8,7 @@ function About() {
   const classes = `mt-20 flex flex-wrap items-center`;
 
   return (
-    <>
+    <div className="mt-10">
       <Section
         title="About Animalack"
         description="Animalacks aim is to help pet owners to more easily keep track of their pets. 
@@ -46,7 +46,7 @@ function About() {
           </div>
         </div>
       </Section>
-    </>
+    </div>
   );
 }
 

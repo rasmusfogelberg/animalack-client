@@ -16,6 +16,10 @@ const navItems = [
     label: "About",
     path: "/about",
   },
+  {
+    label: "All Pets",
+    path: "/allPets",
+  },
 ];
 
 function Navigation() {
