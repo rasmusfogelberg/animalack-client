@@ -9,6 +9,7 @@ import PetDetail from "../Pages/Pets/PetDetail/PetDetail";
 import Pets from "../Pages/Pets/Pets";
 import UpdatePet from "../Pages/Pets/UpdatePet";
 import Register from "../Pages/Register/Register";
+import About from "../Pages/About/About"
 
 function Routes() {
   return (
@@ -47,6 +48,7 @@ function Routes() {
             </PrivateRoute>
           }
         />
+         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route element={<BareLayout />}>

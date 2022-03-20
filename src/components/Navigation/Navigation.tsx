@@ -2,7 +2,6 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import BurgerMenuButton from "../UI/BurgerMenuButton/BurgerMenuButton";
-import { Toaster } from "react-hot-toast";
 
 const navItems = [
   {
@@ -36,7 +35,6 @@ function Navigation() {
 
   return (
     <div className="bg-gray-800">
-      <Toaster position="top-center" reverseOrder={false} />
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex-shrink-0 mr-4">
