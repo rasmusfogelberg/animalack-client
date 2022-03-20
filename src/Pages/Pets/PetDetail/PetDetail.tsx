@@ -9,6 +9,7 @@ function PetDetail() {
   const [pet, setPet] = useState<ISinglePet>();
   const { petId } = useParams();
   const born = new Date(pet?.dateOfBirth as Date).toLocaleDateString();
+  const gender = pet?.gender && parseInt(pet?.gender) > 1 ? "Female" : "Male";
   const navigate = useNavigate();
   useEffect(() => {
     if (!pet && petId) {
@@ -37,9 +38,9 @@ function PetDetail() {
         <div className="flex flex-wrap justify-between">
         <ul className="text-lg">
           <li className="my-1 font-bold ">Species: <span className="font-medium">{pet?.species}</span></li>
-          <li className="my-1 font-bold">Breed: <span className="font-medium">{pet?.breed}</span></li>
+          <li className="my-1 font-bold">Breed: <span className="font-medium">{pet?.breed || "N/A"}</span></li>
           <li className="my-1 font-bold">Color: <span className="font-medium">{pet?.color}</span></li>
-          <li className="my-1 font-bold">Gender: <span className="font-medium">{pet?.gender}</span></li>
+          <li className="my-1 font-bold">Gender: <span className="font-medium">{gender}</span></li>
           <li className="my-1 font-bold">Born: <span className="font-medium">{born}</span></li>
           <li className="my-1 font-bold">Owner: <span className="font-medium">{pet?.users[0].firstName}</span></li>
         </ul>

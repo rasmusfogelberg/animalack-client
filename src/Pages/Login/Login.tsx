@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
@@ -12,6 +13,7 @@ function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const { state }: any = useLocation();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const {
     register,
@@ -21,12 +23,12 @@ function Login() {
 
   async function onSubmit(data: LoginFormData) {
     try {
-      debugger;
       await login(data.username, data.password, () => {
         navigate(state?.path || "/");
       });
     } catch (error: any) {
-      console.log(error.response.data);
+      console.error(error.message);
+      setErrorMessage(error.message);
     }
   }
 
@@ -59,9 +61,10 @@ function Login() {
               required: "Required",
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: "Does not match email format"
-              }})}
-              type="email"
+                message: "Does not match email format",
+              },
+            })}
+            type="email"
             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 ${
               errors.username &&
               "focus:border-red-400 focus:ring-red-400 border-red-400"
@@ -84,6 +87,7 @@ function Login() {
               "focus:border-red-400 focus:ring-red-400 border-red-400"
             }`}
           />
+          {errorMessage && <div className="text-red-700 font-bold text-center">{errorMessage}</div>}
           <div className="flex items-center mt-3 justify-center">
             <button
               className={

@@ -28,7 +28,7 @@ function About() {
           </div>
 
           <div className="w-full sm:w-1/2 p-6">
-            <img src={Avatar} alt="Alt text here" />
+            <img src={Avatar} alt="Image of the founder of Animlack" />
           </div>
           <div>
             The idea for Animalack started when I noticed my cat wouldn't always

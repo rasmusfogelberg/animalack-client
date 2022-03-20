@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { petService } from "../../services/pet.service";
-import { ISinglePet } from "../../types/pets";
+import { petService } from "../../../services/pet.service";
+import { ISinglePet } from "../../../types/pets";
 import toast from "react-hot-toast";
 
 function UpdatePet() {
@@ -24,10 +24,10 @@ function UpdatePet() {
       breed: pet?.breed,
       color: pet?.color,
       gender: pet?.gender,
-      dateOfBirth: pet?.dateOfBirth,
+      dateOfBirth: new Date(pet?.dateOfBirth as Date),
     },
   });
-
+debugger;
   useEffect(() => {
     if (!pet && petId && loading) {
       petService.getSinglePet(petId).then((pet) => {
@@ -86,8 +86,7 @@ function UpdatePet() {
               <input
                 {...register("name", { required: "This field is required" })}
                 className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 ${
-                  errors.name &&
-                  "focus:border-red-400 focus:ring-red-400 border-red-400"
+                  errors.name ? "focus:border-red-400 focus:ring-red-400 border-red-400" : ""
                 }`}
               />
               <label className="text-left">Species: </label>
@@ -102,8 +101,7 @@ function UpdatePet() {
               <input
                 {...register("species", { required: "This field is required" })}
                 className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 ${
-                  errors.species &&
-                  "focus:border-red-400 focus:ring-red-400 border-red-400"
+                  errors.species ? "focus:border-red-400 focus:ring-red-400 border-red-400" : ""
                 }`}
               />
               <label className="text-left">Breed: </label>
@@ -125,8 +123,7 @@ function UpdatePet() {
               <input
                 {...register("color", { required: "This field is required" })}
                 className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 ${
-                  errors.color &&
-                  "focus:border-red-400 focus:ring-red-400 border-red-400"
+                  errors.color ? "focus:border-red-400 focus:ring-red-400 border-red-400" : ""
                 }`}
               />
               <label className="text-left">Gender: </label>
@@ -154,8 +151,7 @@ function UpdatePet() {
                   required: "Date can't be in the future",
                 })}
                 className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 ${
-                  errors.dateOfBirth &&
-                  "focus:border-red-400 focus:ring-red-400 border-red-400"
+                 errors.dateOfBirth ? "focus:border-red-400 focus:ring-red-400 border-red-400" : ""
                 }`}
               />
               <div className="flex items-center mt-3 justify-center">

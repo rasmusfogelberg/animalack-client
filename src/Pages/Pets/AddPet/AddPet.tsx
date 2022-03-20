@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../providers/AuthProvider";
-import { petService } from "../../services/pet.service";
+import { useAuth } from "../../../providers/AuthProvider";
+import { petService } from "../../../services/pet.service";
 import toast from "react-hot-toast";
 
 function AddPet() {
